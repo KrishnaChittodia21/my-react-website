@@ -13,7 +13,7 @@ const portfolio = [
   { title: 'Explore', subtitle: 'Graphic Design', image: img2},
   { title: 'Finish', subtitle: 'Identity', image: img3},
   { title: 'Lines', subtitle: 'Branding', image: img4},
-  { title: 'Threads', Southwest: 'Website Design', image: img5},
+  { title: 'Southwest', Southwest: 'Website Design', image: img5},
   { title: 'Window', subtitle: 'Photography', image: img6},
 ]
 
