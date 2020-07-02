@@ -9,7 +9,7 @@ import img5 from "../assets/img/portfolio/05-thumbnail.jpg";
 import img6 from "../assets/img/portfolio/06-thumbnail.jpg";
 
 const portfolio = [
-  { title: 'Threads', subtitle: 'Illustration', image: img1},
+  { title: 'Thread', subtitle: 'Illustration', image: img1},
   { title: 'Explore', subtitle: 'Graphic Design', image: img2},
   { title: 'Finish', subtitle: 'Identity', image: img3},
   { title: 'Lines', subtitle: 'Branding', image: img4},
