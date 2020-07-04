@@ -21,7 +21,6 @@ class Portfolio extends Component {
 
   render() {
     return (
-      <div>
         <section className="page-section bg-light" id="portfolio">
             <div className="container">
                 <div className="text-center">
@@ -38,7 +37,6 @@ class Portfolio extends Component {
                 </div>
             </div>
         </section>
-      </div>
     )
   }
 }

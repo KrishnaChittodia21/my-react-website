@@ -4,6 +4,8 @@ import image from "../assets/img/header-bg.jpg"
 
 import Services from "../Common/Services";
 import Portfolio from "../Common/Portfolio";
+import Team from "../Common/Team";
+import Client from "../Common/Client";
 class Home extends Component {
 
   render() {
@@ -18,7 +20,9 @@ class Home extends Component {
           image={image}
         />
         <Services />
-        <Portfolio  />
+        <Portfolio />
+        <Team />
+        <Client />
       </div>
     )
   }
