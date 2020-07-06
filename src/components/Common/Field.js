@@ -10,12 +10,17 @@ class Field extends Component {
             id={this.props.name}
             type={this.props.type}
             placeholder={this.props.placeholder}
-            required="required"
+            name={this.props.name}
             data-validation-required-message="Please enter your name."
-            value={this.props.value}
-            onChange={(e) => this.props.onChange(e)}
-            />
-            <p className="help-block text-danger"></p>
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
+          />
+            <p className="help-block text-danger">
+            {
+              (this.props.touched && this.props.error) &&
+              <span>{this.props.errors}</span>
+            }
+            </p>
           </div>
           :
         <div className="form-group form-group-textarea mb-md-0">
@@ -23,12 +28,17 @@ class Field extends Component {
             className="form-control"
             id={this.props.name}
             placeholder={this.props.placeholder}
-            required="required"
+            name={this.props.name}
             data-validation-required-message="Please enter a message."
-            value={this.props.value}
-            onChange={(e) => this.props.onChange(e)}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
           />
-          <p className="help-block text-danger"></p>
+          <p className="help-block text-danger">
+            {
+              (this.props.touched && this.props.error) &&
+              <span>{this.props.errors}</span>
+            }
+          </p>
       </div>
     )
   }
