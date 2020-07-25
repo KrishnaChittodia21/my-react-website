@@ -7,25 +7,45 @@ import PageWrapper from "./components/PageWrapper"
 import Home from "./components/Pages/Home";
 import About from "./components/Pages/About";
 import Contact from "./components/Pages/Contact";
+import AdminWrapper from "./components/AdminWrapper";
+import Login from "./components/Pages/Login";
 
 function App() {
   return (
     <Router>
-      <PageWrapper>
+      <Route
+        path="/admin"
+        render={ props => (
+          <AdminWrapper>
+            <Login/>
+          </AdminWrapper>
+        )}
+      />
         <Route
           exact={true}
           path="/"
-          component={Home}
+          render= { props => (
+            <PageWrapper>
+              <Home {...props}/>
+            </PageWrapper>
+          )}
         />
         <Route
           path="/about"
-          component={About}
+          render= { props => (
+            <PageWrapper>
+              <About {...props}/>
+            </PageWrapper>
+          )}
         />
         <Route
           path="/contact"
-          component={Contact}
+          render= { props => (
+            <PageWrapper>
+              <Contact {...props}/>
+            </PageWrapper>
+          )}
         />
-      </PageWrapper>
     </Router>
   );
 }
