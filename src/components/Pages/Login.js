@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Field from '../Common/Field';
 import { withFormik } from 'formik';
+import { connect } from 'react-redux';
 import * as yup from 'yup';
+import * as AuthActions from '../../store/actions/authActions'
 
 const fields = [
   { name: 'email', elementName: 'input', type: 'email', placeholder: 'Your email'},
@@ -9,17 +11,19 @@ const fields = [
 ]
 
 class Login extends Component {
-
   render() {
     return (
       <div className="login-page">
         <div className="container">
           <div className="login-form">
-            <di className="row">
-              <h1>Login</h1>
-            </di>
             <div className="row">
-              <form onSubmit={this.props.handleSubmit}>
+              <h1>Login</h1>
+            </div>
+            <div className="row">
+              <form onSubmit={ (e) => {
+                e.preventDefault();
+                this.props.login(this.props.values.email, this.props.values.password);
+              }}>
                 { fields.map((f, i) => {
                   return (
                     <div className="col-md-12">
@@ -36,10 +40,10 @@ class Login extends Component {
                     </div>
                   )
                 })}
+                <div className="col-md-12">
+                  <button className="btn btn-primary">Login</button>
+                </div>
               </form>
-              <div className="col-md-12">
-                <button className="btn btn-primary">Login</button>
-              </div>
             </div>
           </div>
         </div>
@@ -48,7 +52,24 @@ class Login extends Component {
   }
 }
 
-export default withFormik({
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, pass) => {
+      dispatch(AuthActions.login(email, pass));
+    } 
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withFormik({
   mapPropsToValues: () => ({
     email: '',
     password: ''
@@ -56,8 +77,5 @@ export default withFormik({
   validationSchema: yup.object().shape({
     email: yup.string().email('Email is invalid').required('You need to login with email address'),
     password: yup.string().required('You need to enter password')
-  }),
-  handleSubmit: (values, { setSubmitting }) => {
-    console.log('Login attempt', values);
-  }
-})(Login);
+  })
+})(Login));

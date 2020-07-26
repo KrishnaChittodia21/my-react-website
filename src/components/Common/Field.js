@@ -17,7 +17,7 @@ class Field extends Component {
           />
             <p className="help-block text-danger">
             {
-              (this.props.touched && this.props.error) &&
+              (this.props.touched && this.props.errors) &&
               <span>{this.props.errors}</span>
             }
             </p>
@@ -33,9 +33,9 @@ class Field extends Component {
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
           />
-          <p className="help-block text-danger">
+          <p className="text-danger">
             {
-              (this.props.touched && this.props.error) &&
+              (this.props.touched && this.props.errors) &&
               <span>{this.props.errors}</span>
             }
           </p>
