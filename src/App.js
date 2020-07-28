@@ -9,16 +9,58 @@ import Home from "./components/Pages/Home";
 import About from "./components/Pages/About";
 import Contact from "./components/Pages/Contact";
 
+//Admin pages
+import Posts from "./components/Pages/Admin/Posts";
+import Users from "./components/Pages/Admin/Users";
+import Dashboard from "./components/Pages//Admin/Dashboard";
+
 import AdminWrapper from "./components/AdminWrapper";
 import LoginWrapper from "./components/LoginWrapper";
 
 import Login from "./components/Pages/Login";
-import Dashboard from "./components/Pages/Dashboard";
 
 class App extends Component {
   render(){
     return (
       <Router>
+        <Route
+          path="/admin/users"
+          render={ props => {
+            return (
+              <div>
+              {
+                (this.props.auth.token) ?
+                <AdminWrapper>
+                  <Users/>
+                </AdminWrapper>
+                :
+                <LoginWrapper>
+                  <Login/>
+                </LoginWrapper>
+              }
+              </div>
+            )
+          }}
+        />
+        <Route
+          path="/admin/posts"
+          render={ props => {
+            return (
+              <div>
+              {
+                (this.props.auth.token) ?
+                <AdminWrapper>
+                  <Posts/>
+                </AdminWrapper>
+                :
+                <LoginWrapper>
+                  <Login/>
+                </LoginWrapper>
+              }
+              </div>
+            )
+          }}
+        />
         <Route
           path="/admin"
           render={ props => {

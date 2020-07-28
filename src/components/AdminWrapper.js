@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import "./assets/css/admin.css";
+import Sidebar from './Common/Sidebar';
 
 // import classNames from 'classNames';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,15 +17,19 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
+import { Hidden } from '@material-ui/core';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
   toolbar: {
     paddingRight: 24
   },
   appBar: {
-    zIndex: theme.zIndex + 1,
+    zIndex: theme.zIndex.drawer + 1,
     transitions: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -38,10 +43,23 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen
     })
   },
+  appBarSpace: theme.mixins.toolbar,
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'noWrap',
-    width: drawerWidth
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    }) 
+  },
+  drawerPaperClose: {
+    overflowX: 'hidden',
+    width: theme.spacing.unit * 7,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }) 
   },
   toolbarIcon: {
     display: 'flex',
@@ -49,6 +67,12 @@ const styles = theme => ({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.units * 3,
+    height: '100vh',
+    overflow: 'auto'
   }
 })
 class AdminWrapper extends Component {
@@ -71,10 +95,10 @@ class AdminWrapper extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div id="admin-page">
+      <div id="admin-page" className={classes.root}>
         <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
-            <IconButton>
+            <IconButton onClick={this.handleDrawerOpen}>
               <MenuIcon/>
             </IconButton>
             <Typography
@@ -89,7 +113,7 @@ class AdminWrapper extends Component {
           variant="permanent"
           open="true"
           classes={{
-            paper: classes.drawerPaper
+            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose)
           }}
         >
           <div className={classes.toolbarIcon}>
@@ -98,13 +122,12 @@ class AdminWrapper extends Component {
             </IconButton>
           </div>
           <Divider/>
-          <List>
-            <ListItem>
-              Dashboard
-            </ListItem>
-          </List>
+          <Sidebar/>
         </Drawer>
-        {this.props.children}
+        <main className={classes.content}>
+          <div className={classes.appBarSpace} />
+          {this.props.children}
+        </main>
       </div>
     )
   }

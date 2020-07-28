@@ -3,21 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducers from './store/reducers';
-import thunk from 'redux-thunk';
+import { PersistGate } from 'redux-persist/integration/react'
+import configureStore from './store/configureStore'
+ 
 
-const store = createStore(
-  rootReducers,
-  applyMiddleware(thunk)
-  );  
-
+const { store, persistor } = configureStore();
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );
