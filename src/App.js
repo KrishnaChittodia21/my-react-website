@@ -13,6 +13,7 @@ import Contact from "./components/Pages/Contact";
 import Posts from "./components/Pages/Admin/Posts";
 import Users from "./components/Pages/Admin/Users";
 import Dashboard from "./components/Pages//Admin/Dashboard";
+import AddPost from "./components/Pages//Admin/AddPost";
 
 import AdminWrapper from "./components/AdminWrapper";
 import LoginWrapper from "./components/LoginWrapper";
@@ -38,6 +39,25 @@ class App extends Component {
                   <Login/>
                 </LoginWrapper>
               }
+              </div>
+            )
+          }}
+        />
+        <Route
+          path="/admin/posts/add"
+          render= { props => {
+            return (
+              <div>
+                {
+                  (this.props.auth.token) ?
+                  <AdminWrapper>
+                    <AddPost/>
+                  </AdminWrapper>
+                  :
+                  <LoginWrapper>
+                    <Login/>
+                  </LoginWrapper>
+                }
               </div>
             )
           }}
