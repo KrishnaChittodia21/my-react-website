@@ -33,11 +33,22 @@ export const addPost = (post, token) => {
   }
 }
 
-export const getSinglePost =(id, token) => {
+export const getSinglePost = (id, token) => {
   return (dispatch) => {
     API.getSinglePost(id, token, res => {
       dispatch({
         type: 'GOT_SINGLE_POST',
+        payload: res.data
+      })
+    })
+  }
+}
+
+export const uploadImage = (data, token, postId, userId) => {
+  return (dispatch) => {
+    API.uploadImage(data, token, postId, userId, res => {
+      dispatch({
+        type: 'UPLOADED_IMAGE',
         payload: res.data
       })
     })
