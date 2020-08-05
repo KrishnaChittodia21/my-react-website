@@ -12,6 +12,8 @@ import * as Yup from 'yup';
 import $ from 'jquery';
 import * as AdminActions from '../../../store/actions/adminActions';
 import API from '../../../utils/api';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 const styles = theme => ({
@@ -25,7 +27,8 @@ const styles = theme => ({
     marginBottom : theme.spacing.unit * 2
   },
   postImage: {
-    width: '100%'
+    width: '20%',
+    height: '20%'
   },
   formControl: {
     margin: theme.spacing.unit
@@ -64,6 +67,26 @@ class AddPost extends Component {
     }
   }
 
+  modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{'header': 1}, {'header': 2}],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      [{'indent': '-1'}, {'indent': '+1'}],
+      [{'size': ['small', 'medium', 'large', 'huge']}],
+      [{'color': []}, {'background': []}],
+      ['image'],
+      ['clean']
+    ]
+  }
+
+  formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote', 'script',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'color', 'code-block'
+  ]
+
   uploadImage = (e) => {
     console.log(this.props)
     let data = new FormData();
@@ -90,11 +113,11 @@ class AddPost extends Component {
               label="Slug"
               margin="normal"
             />
-            <FormikTextField 
-              name="content"
-              label="Content"
-              margin="normal"
-              fullWidth
+            <ReactQuill
+              value={this.props.values.content}
+              modules={this.modules}
+              placeholder="Write something"
+              onChange={ val => this.props.setFieldValue('content', val)}
             />
           </Paper>
           <Paper className={classes.rightSide}>
