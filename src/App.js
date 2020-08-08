@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import PageWrapper from "./components/PageWrapper"
@@ -10,6 +10,8 @@ import About from "./components/Pages/About";
 import Contact from "./components/Pages/Contact";
 import Single from "./components/Pages/Single";
 import Blog from "./components/Pages/Blog";
+import SignUp from './components/Pages/SignUp';
+
 
 //Admin pages
 import Posts from "./components/Pages/Admin/Posts";
@@ -107,6 +109,24 @@ class App extends Component {
           }}
         />
         <Route
+            exact={true}
+            path="/signup"
+            render= { props => {
+              if(this.props.auth.token) {
+                return (
+                  <Redirect to="/" />
+                )
+              }
+              else {
+                return(
+                <LoginWrapper>
+                  <SignUp/>
+                </LoginWrapper>
+                )
+              }
+            }}
+        />
+        <Route
           path="/admin"
           exact={true}
           render={ props => {
@@ -137,6 +157,7 @@ class App extends Component {
           />
           <Route
             path="/blog/:slug"
+            exact={true}
             render= { props => (
               <PageWrapper>
                 <Single {...props}/>
@@ -145,6 +166,7 @@ class App extends Component {
           />
           <Route
             path="/blog"
+            exact={true}
             render= { props => (
               <PageWrapper>
                 <Blog {...props}/>
