@@ -22,6 +22,7 @@ class Users extends Component {
           <TableView
             rows={users}
             columns={columns}
+            role={"admin"}
           />
       </div>
     )
