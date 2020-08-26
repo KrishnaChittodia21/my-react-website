@@ -143,7 +143,7 @@ class AddPost extends Component {
             </div>
             { this.props.admin.post.PostImage ?
                 this.props.admin.post.PostImage.length > 0 ?
-                  <img src={API.makeFileUrl(this.props.admin.post.PostImage[0].url, this.props.auth.token)} className={classes.postImage} />
+                  <img alt="jsx-a11y/img-redundant-alt" src={API.makeFileUrl(this.props.admin.post.PostImage[0].url, this.props.auth.token)} className={classes.postImage} />
                 :null
             : null}
             <div>

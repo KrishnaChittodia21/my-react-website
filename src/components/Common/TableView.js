@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
@@ -11,7 +10,7 @@ import Link from '@material-ui/core/Link';
 
 class TableView extends Component {
   render() {
-    const { rows, columns } = this.props;
+    const { rows, columns, role } = this.props;
     return (
       <Paper>
         <Table>
@@ -26,7 +25,7 @@ class TableView extends Component {
             }
           </TableHead>
           <TableBody>
-            { rows ?
+            { role === "admin" && rows ?
               rows.map((row, i) => {
                 return (
                   <TableRow>

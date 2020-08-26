@@ -3,7 +3,6 @@ import {Link as RouterLink} from 'react-router-dom';
 import TableView from '../../Common/TableView';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit'
 import * as AdminActions from '../../../store/actions/adminActions';
@@ -29,13 +28,14 @@ class Posts extends Component {
 
   render() {
     const posts = this.props.admin.posts;
-    const { classes } = this.props;
+    const { classes, auth: { profile } } = this.props;
     return (
       <div>
         <h1>Posts</h1>
           <TableView
             rows={posts}
             columns={columns}
+            role={profile.length > 0 ? "subscriber": "admin"}
           />
           <Fab component={RouterLink} to="/admin/posts/add" color="secondary" aria-label="Add" className={classes.fab}>
             <EditIcon/>

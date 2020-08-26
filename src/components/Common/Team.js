@@ -6,9 +6,9 @@ import img2 from "../assets/img/team/2.jpg";
 import img3 from "../assets/img/team/3.jpg";
 
 const teams = [
-  { role: 'Lead Designer', name: 'Kay Garland', image: img1 },
-  { role: 'Lead Marketer', name: 'Larry Parker', image: img2 },
-  { role: 'Lead Developer', name: 'Diana Petersen', image: img3 },
+  { role: 'Lead Designer', name: 'Krishna Chittodia', image: img1 },
+  { role: 'Lead Marketer', name: 'Krishna Chittodia', image: img2 },
+  { role: 'Lead Developer', name: 'Krishna Chittodia', image: img3 },
 ]
 class Team extends Component {
 

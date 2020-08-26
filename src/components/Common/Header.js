@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "../assets/css/header.css"
 
 class Header extends Component {
   render() {

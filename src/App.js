@@ -12,6 +12,10 @@ import Single from "./components/Pages/Single";
 import Blog from "./components/Pages/Blog";
 import SignUp from './components/Pages/SignUp';
 
+//Common
+import Services from "./components/Common/Services";
+import Portfolio from "./components/Common/Portfolio";
+import Team from "./components/Common/Team";
 
 //Admin pages
 import Posts from "./components/Pages/Admin/Posts";
@@ -161,6 +165,30 @@ class App extends Component {
             render= { props => (
               <PageWrapper>
                 <Single {...props}/>
+              </PageWrapper>
+            )}
+          />
+          <Route
+            path="/services"
+            render= { props => (
+              <PageWrapper>
+                <Services {...props}/>
+              </PageWrapper>
+            )}
+          />
+          <Route
+            path="/portfolio"
+            render= { props => (
+              <PageWrapper>
+                <Portfolio {...props}/>
+              </PageWrapper>
+            )}
+          />
+          <Route
+            path="/team"
+            render= { props => (
+              <PageWrapper>
+                <Team {...props}/>
               </PageWrapper>
             )}
           />

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import SingleService from "./SingleService";
+import { withRouter } from 'react-router-dom';
+
 
 const services = [
   {
@@ -44,4 +46,4 @@ class Services extends Component {
   }
 }
 
-export default Services;
+export default withRouter(Services);
