@@ -88,7 +88,6 @@ class AddPost extends Component {
   ]
 
   uploadImage = (e) => {
-    console.log(this.props)
     let data = new FormData();
     data.append('file', e.target.files[0], new Date().getTime().toString() + e.target.files[0].name);
     this.props.uploadImage(data, this.props.auth.token, this.props.admin.post.id, this.props.auth.user.userId)

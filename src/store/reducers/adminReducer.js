@@ -59,6 +59,11 @@ const admin = (state = defaultState, action) => {
         }
       }
     }
+    case 'LOGOUT': {
+      return {
+        ...defaultState
+      }
+    }
     default:
       return state;
   }

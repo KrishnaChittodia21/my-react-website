@@ -35,7 +35,7 @@ class Posts extends Component {
           <TableView
             rows={posts}
             columns={columns}
-            role={profile.length > 0 ? "subscriber": "admin"}
+            role={ profile && profile.length > 0 ? "subscriber": "admin"}
           />
           <Fab component={RouterLink} to="/admin/posts/add" color="secondary" aria-label="Add" className={classes.fab}>
             <EditIcon/>

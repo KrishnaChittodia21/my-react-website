@@ -65,3 +65,12 @@ export const updatePost = (post, token) => {
     })
   }
 }
+
+export const logout = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'LOGOUT',
+      payload: undefined
+    })
+  }
+}

@@ -24,6 +24,11 @@ const auth = (state = defaultState, action ) => {
         user: action.payload,
         profile: action.payload.Profile
       }
+    case 'LOGOUT': {
+      return {
+        ...defaultState
+      }
+    }
     default:
       return state    
   }
