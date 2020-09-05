@@ -67,7 +67,6 @@ const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
       dispatch(AuthActions.logout(), AdminActions.logout())
-      // dispatch(AdminActions.logout())
     }
   }
 }
